@@ -4,7 +4,8 @@
       v-model="title"
       class="form-control"
       type="text" 
-      placeholder="Search for Movies, Series & more" />
+      placeholder="Search for Movies, Series & more"
+      @keyup.enter="apply" />
     <div class="selects">
       <select
         v-for="filter in filters"
@@ -12,12 +13,22 @@
         :key="filter.name"
         class="form-select">
         <option
+          v-if="filter.name === 'year'"
+          value="">
+          All Years
+        </option>
+        <option
           v-for="item in filter.items"
           :key="item">
           {{ item }}
         </option>
       </select>
     </div>
+    <button 
+      class="btn btn-primary" 
+      @click="apply">
+      apply
+    </button>
   </div>
 </template>
 
@@ -51,6 +62,16 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    async apply() {
+      this.$store.dispatch('movie/searchMovies', {
+        title: this.title,
+        type: this.type,
+        number: this.number,
+        year: this.year  
+      })
+    }
   }
 }
 
@@ -75,6 +96,12 @@ export default {
         margin-right: 0px; 
       }
     }
+  }
+  .btn {
+    width: 120px;
+    height: 50px;
+    font-weight: 700;
+    flex-shrink: 0;
   }
 }
 
