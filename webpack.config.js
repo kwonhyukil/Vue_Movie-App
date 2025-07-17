@@ -43,7 +43,7 @@ module.exports = {
         test: /\.s?css$/,
         use: [
           // 순서 중요!
-          "vue-style-loader",
+          "vue-style-loader", 
           "style-loader",
           "css-loader",
           "postcss-loader",

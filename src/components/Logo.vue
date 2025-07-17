@@ -18,7 +18,7 @@
       color: $black;
     }
     span {
-        color: $primary
+      color: $primary;
     }
 }
 </style>
