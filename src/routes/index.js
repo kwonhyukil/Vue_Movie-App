@@ -8,8 +8,10 @@ export default createRouter({
   // Hash, History
   // https://google.com/#/search
   history: createWebHashHistory(),
-
-  // page
+  scrollBehavior() {
+    return { top: 0 }
+  },
+  // pages
   // https://google.com/
   routes: [
     {
